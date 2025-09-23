@@ -1,142 +1,198 @@
----
+# DevGuard - Laravel Development Monitoring Package
 
-# Dev Monitoring Guard
+A comprehensive Laravel package that provides development monitoring and guard functionality with integrated tools for logging, API documentation, and application monitoring giving access to only authorized users.
 
-A Laravel package that provides a **secure developer dashboard** for **Telescope**, **Log Viewer**, and **Scramble**, protected by a **custom DevUser auth guard**.
+## Features
 
-> Before accessing developer tools, users must log in via the DevUser guard.
+- **Development User Management** - Secure authentication system for development environments
+- **Integrated Log Viewer** - Built-in log viewing capabilities via [Log Viewer](https://github.com/opcodesio/log-viewer)
+- **API Documentation** - Automatic API documentation generation with [Scramble](https://github.com/dedoc/scramble)
+- **Application Monitoring** - Advanced debugging and monitoring with [Laravel Telescope](https://github.com/laravel/telescope)
+- **Custom Authentication Guard** - Specialized auth guard for development users
+- **React/JS Integration** - Frontend components and build configuration
+- **Database Seeding** - Pre-configured development user seeding
 
----
+## Requirements
 
-## **Features**
+- PHP 8.1 or higher
+- Laravel 10.0 or 11.0
+- Composer
 
-* Custom **DevUser authentication guard**.
-* Secure **developer dashboard**.
-* Quick links to:
+## Installation
 
-  * [Laravel Telescope](https://laravel.com/docs/telescope)
-  * [Log Viewer](https://github.com/rap2hpoutre/laravel-log-viewer)
-  * [Scramble](https://github.com/beyondcode/laravel-scramble)
-* Seeder for immediate DevUser login.
-* Easy integration with Laravel 10+ / 11+.
-
----
-
-## **Installation**
-
-### **1. Require the Package**
+### 1. Install the Package
 
 ```bash
-composer require emmanuelikeogu/devguard
+composer require ikeogu/devguard
 ```
 
-> If using locally, add a `path` repository in `composer.json`:
+This will automatically install all required dependencies:
+- `opcodesio/log-viewer`
+- `dedoc/scramble` 
+- `laravel/telescope`
 
-```json
-"repositories": [
-    {
-        "type": "path",
-        "url": "packages/emmanuelikeogu/devguard"
-    }
-]
-```
+### 2. Publish Package Assets
 
-Then run:
+Publish all package files and configurations:
 
 ```bash
-composer require emmanuelikeogu/devguard:@dev
+php artisan vendor:publish --tag=dev-guard-all
 ```
 
----
+This will publish:
+- Views to `resources/views/vendor/dev-guard`
+- JavaScript/React components to `resources/js/vendor/dev-guard`
+- Database migration for dev users table
+- Database seeder for default dev user
+- Configuration files for all integrated packages
 
-### **2. Publish Views (Optional)**
-
-```bash
-php artisan vendor:publish --provider="DevMonitoringGuard\DevMonitoringGuardServiceProvider" --tag=views
-```
-
----
-
-### **3. Run Migrations**
+### 3. Run Database Migration
 
 ```bash
 php artisan migrate
 ```
 
-This creates the `dev_users` table.
-
----
-
-### **4. Seed a DevUser**
+### 4. Seed Default Development User
 
 ```bash
 php artisan db:seed --class=DevUserSeeder
 ```
 
-**Default credentials:**
+This creates a default development user:
+- **Email:** `dev@local.test`
+- **Password:** `password`
 
-```
-Email: dev@example.com
-Password: secret123
-```
+## Configuration
 
-> You can change them by editing the seeder.
+### DevGuard Configuration
 
----
-
-## **Configuration**
-
-In `config/auth.php`, ensure the guard and provider exist:
+The main configuration file is published to `config/devguard.php`. Customize it according to your needs:
 
 ```php
-'guards' => [
-    'dev' => [
-        'driver' => 'session',
-        'provider' => 'dev_users',
-    ],
-],
+<?php
 
-'providers' => [
-    'dev_users' => [
-        'driver' => 'eloquent',
-        'model' => App\Models\DevUser::class,
-    ],
-],
+return [
+    'enabled' => true,
+    
+    // Add your package-specific configurations here
+];
 ```
 
----
+### Integrated Tools Configuration
 
-## **Usage**
+The package automatically publishes configuration files for all integrated tools:
 
-1. Access the **Dev Dashboard**:
+- **Log Viewer:** `config/log-viewer.php`
+- **Scramble API Docs:** `config/scramble.php` 
+- **Telescope:** `config/telescope.php`
 
+Refer to each tool's documentation for specific configuration options.
+
+## Usage
+
+### Development Authentication
+
+The package provides a custom authentication guard for development users. Use the `DevUser` model for development-specific authentication:
+
+```php
+use Emmanuelikeogu\DevMonitoringGuard\Models\DevUser;
+
+// Example usage in your controllers
+$devUser = DevUser::where('email', 'dev@local.test')->first();
 ```
-/dev-dashboard
+
+### Accessing Integrated Tools
+
+Once installed and configured:
+
+- **Log Viewer:** Visit `/log-viewer` (configure route in log-viewer config)
+- **API Documentation:** Visit `/docs/api` (configure route in scramble config)
+- **Telescope:** Visit `/telescope` (configure route in telescope config)
+
+## Publishing Options
+
+You can publish specific parts of the package separately:
+
+```bash
+# Publish only core package files (views, JS, config)
+php artisan vendor:publish --tag=dev-guard-core
+
+# Publish only database files (migration, seeder)
+php artisan vendor:publish --tag=dev-guard-database
+
+# Publish only vendor configuration files
+php artisan vendor:publish --tag=dev-guard-vendor-configs
+
+# Force republish all files (overwrites existing)
+php artisan vendor:publish --tag=dev-guard-all --force
 ```
 
-2. Links on the dashboard give access to:
+### Service Provider
 
-* Telescope: `/telescope`
-* Log Viewer: `/logs`
-* Scramble: `/scramble`
+The package automatically registers all necessary service providers and handles:
 
-3. Routes are **protected by the DevUser guard**; only logged-in DevUsers can access.
+- Custom authentication guard registration
+- Route loading
+- View loading
+- Configuration merging
+- Conditional vendor package registration
 
----
+## Troubleshooting
 
+### Common Issues
 
+**Migration already exists:**
+- Use `--force` flag when republishing: `php artisan vendor:publish --tag=dev-guard-all --force`
 
+**Vendor configs not found:**
+- Ensure all dependencies are installed: `composer install`
+- Check if specific packages are available in your `vendor` directory
 
----
+**Permission issues:**
+- Ensure your web server has write permissions to storage and bootstrap/cache directories
 
-## **Screenshots**
+### Re-installation
 
-*(Optional: add screenshots of dashboard, Telescope, Log Viewer, Scramble)*
+To completely reinstall the package:
 
----
+```bash
+# Remove published files
+rm config/devguard.php config/log-viewer.php config/scramble.php config/telescope.php
+rm database/seeders/DevUserSeeder.php
+rm -rf resources/views/vendor/dev-guard resources/js/vendor/dev-guard
 
-## **License**
+# Republish
+php artisan vendor:publish --tag=dev-guard-all
+php artisan migrate:fresh
+php artisan db:seed --class=DevUserSeeder
+```
 
-MIT License. See [LICENSE](LICENSE).
+## Contributing
 
----
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Support
+
+If you encounter any issues or have questions:
+
+1. Check the [troubleshooting section](#troubleshooting)
+2. Review the documentation for integrated tools:
+   - [Log Viewer Documentation](https://github.com/opcodesio/log-viewer)
+   - [Scramble Documentation](https://github.com/dedoc/scramble)
+   - [Telescope Documentation](https://laravel.com/docs/telescope)
+3. Open an issue on the GitHub repository
+
+## Credits
+
+This package integrates and builds upon these excellent packages:
+- [Log Viewer](https://github.com/opcodesio/log-viewer) by Opcodesio
+- [Scramble](https://github.com/dedoc/scramble) by Dedoc
+- [Laravel Telescope](https://github.com/laravel/telescope) by Laravel

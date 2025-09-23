@@ -40,6 +40,9 @@
         ],
         "post-package-update": [
             "@php artisan vendor:publish --tag=dev-guard-all --force"
+        ],
+        "post-package-uninstall": [
+            "@php artisan devguard:cleanup || true"
         ]
     },
 

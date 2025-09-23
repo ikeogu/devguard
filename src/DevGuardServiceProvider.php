@@ -2,6 +2,7 @@
 
 namespace Emmanuelikeogu\DevGuard;
 
+use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Opcodes\LogViewer\LogViewerServiceProvider as LogViewerLogViewerServiceProvider;
@@ -43,6 +44,12 @@ class DevGuardServiceProvider extends ServiceProvider
         ], 'dev-guard-all');
 
         $this->publishVendorConfigs();
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                CleanupCommand::class,
+            ]);
+        }
     }
 
     protected function publishVendorConfigs()

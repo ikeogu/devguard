@@ -3,6 +3,7 @@
 namespace Emmanuelikeogu\DevGuard;
 
 use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -57,6 +58,14 @@ class DevGuardServiceProvider extends ServiceProvider
                 $this->installDevGuard();
             });
         }
+
+        $this->app->afterResolving(\Illuminate\Foundation\Configuration\Middleware::class, function ($middleware) {
+            $middleware->redirectGuestsTo(function (Request $request) {
+                if (! $request->expectsJson()) {
+                    return route('dev.login'); // 👈 your dev login route
+                }
+            });
+        });
     }
 
 

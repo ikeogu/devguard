@@ -27,7 +27,7 @@ A Laravel package that provides a **secure developer dashboard** for **Telescope
 ### **1. Require the Package**
 
 ```bash
-composer require emmanuelikeogu/dev-monitoring-guard
+composer require emmanuelikeogu/devguard
 ```
 
 > If using locally, add a `path` repository in `composer.json`:
@@ -36,7 +36,7 @@ composer require emmanuelikeogu/dev-monitoring-guard
 "repositories": [
     {
         "type": "path",
-        "url": "packages/emmanuelikeogu/dev-monitoring-guard"
+        "url": "packages/emmanuelikeogu/devguard"
     }
 ]
 ```
@@ -44,7 +44,7 @@ composer require emmanuelikeogu/dev-monitoring-guard
 Then run:
 
 ```bash
-composer require emmanuelikeogu/dev-monitoring-guard:@dev
+composer require emmanuelikeogu/devguard:@dev
 ```
 
 ---

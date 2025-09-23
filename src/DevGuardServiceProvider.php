@@ -29,7 +29,7 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->publishes([
             // Views
             __DIR__ . '/../resources/views/app.blade.php' => resource_path('views/app.blade.php'),
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/dev-guard'),
+            __DIR__ . '/../resources/views' => resource_path('views/dev-guard'),
 
             // React/JS stubs
             __DIR__ . '/../resources/js' => resource_path('js/vendor/dev-guard'),

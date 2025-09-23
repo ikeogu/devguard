@@ -32,9 +32,9 @@ class DevMonitoringGuardServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/tsconfig.json' => base_path('tsconfig.json'),
 
             // Migration
-            __DIR__ . '/../database/migrations/create_dev_users_table.php.stub'
+            __DIR__ . '/../Database/migrations/create_dev_users_table.php.stub'
                 => database_path('migrations/' . date('Y_m_d_His') . '_create_dev_users_table.php'),
-            __DIR__ . '/../database/seeders/DevUserSeeder.php'
+            __DIR__ . '/../Database/Seeders/DevUserSeeder.php'
                 => database_path('seeders/DevUserSeeder.php'),
 
             // Vendor configs

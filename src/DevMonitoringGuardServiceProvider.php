@@ -43,7 +43,7 @@ class DevMonitoringGuardServiceProvider extends ServiceProvider
             base_path('vendor/laravel/telescope/config/telescope.php') => config_path('telescope.php'),
 
             // Package config
-            __DIR__ . '/../config/dev-monitoring-guard.php' => config_path('devguard.php'),
+            __DIR__ . '/../config/devguard.php' => config_path('devguard.php'),
         ], 'dev-guard-all');
     }
 

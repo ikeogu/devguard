@@ -19,7 +19,6 @@ return [
 
 
 
-
      'scramble' => [
         'enabled' => env('DMG_SCRAMBLE_ENABLED', true),
         'path' => env('DMG_SCRAMBLE_PATH', 'api/docs'),

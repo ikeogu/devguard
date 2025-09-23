@@ -38,11 +38,6 @@ class DevMonitoringGuardServiceProvider extends ServiceProvider
             => database_path('migrations/' . date('Y_m_d_His') . '_create_dev_users_table.php'),
             __DIR__ . '/../database/Seeders/DevUserSeeder.php'
             => database_path('seeders/DevUserSeeder.php'),
-
-            // Vendor configs
-            base_path('vendor/opcodesio/log-viewer/config/log-viewer.php') => config_path('log-viewer.php'),
-            base_path('vendor/guanguans/laravel-scramble/config/scramble.php') => config_path('scramble.php'),
-            base_path('vendor/laravel/telescope/config/telescope.php') => config_path('telescope.php'),
             // Package config
             __DIR__ . '/../config/devguard.php' => config_path('devguard.php'),
         ], 'dev-guard-all');

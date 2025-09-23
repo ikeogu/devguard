@@ -1,0 +1,53 @@
+{
+    "name": "emmanuelikeogu/dev-monitoring-guard",
+    "description": "A Laravel package that provides a secure dashboard for developer tools like Telescope, Log Viewer, and Scramble, protected by a custom DevUser guard.",
+    "type": "library",
+    "require": {
+       "php": "^8.2",
+       "laravel/framework": "^10.0|^11.0",
+       "laravel/telescope": "^5.0",
+       "opcodesio/log-viewer": "^3.0",
+       "dedoc/scramble": "^0.12.32",
+       "inertiajs/inertia-laravel": "^1.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Emmanuelikeogu\\DevMonitoringGuard\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Emmanuelikeogu\\DevMonitoringGuard\\Tests\\": "tests/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Emmanuel Ikeogu Chidera"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "@php artisan vendor:publish --tag=dev-guard-all --force"
+        ],
+         "post-package-install": [
+            "@php artisan vendor:publish --tag=dev-guard-all --force"
+        ],
+        "post-package-update": [
+            "@php artisan vendor:publish --tag=dev-guard-all --force"
+        ]
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Emmanuelikeogu\\DevMonitoringGuard\\DevMonitoringGuardServiceProvider"
+            ]
+        }
+    }
+}

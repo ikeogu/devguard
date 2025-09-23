@@ -28,6 +28,7 @@ class DevGuardServiceProvider extends ServiceProvider
         // Single publish command for everything
         $this->publishes([
             // Views
+            __DIR__ . '/../resources/views/app.blade.php' => resource_path('views/app.blade.php'),
             __DIR__ . '/../resources/views' => resource_path('views/vendor/dev-guard'),
 
             // React/JS stubs

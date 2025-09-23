@@ -34,6 +34,7 @@ class DevGuardServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/package.json' => base_path('package.json'),
             __DIR__ . '/../stubs/vite.config.js' => base_path('vite.config.js'),
             __DIR__ . '/../stubs/tsconfig.json' => base_path('tsconfig.json'),
+            __DIR__ . '/../public/standalone.js' => base_path('public/standalone.js'),
 
             // Package config
             __DIR__ . '/../config/devguard.php' => config_path('devguard.php'),

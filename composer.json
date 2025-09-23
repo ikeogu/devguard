@@ -1,5 +1,5 @@
 {
-    "name": "emmanuelikeogu/dev-monitoring-guard",
+    "name": "ikeogu/dev-monitoring-guard",
     "description": "A Laravel package that provides a secure dashboard for developer tools like Telescope, Log Viewer, and Scramble, protected by a custom DevUser guard.",
     "type": "library",
     "require": {

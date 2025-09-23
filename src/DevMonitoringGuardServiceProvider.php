@@ -34,6 +34,8 @@ class DevMonitoringGuardServiceProvider extends ServiceProvider
             // Migration
             __DIR__ . '/../database/migrations/create_dev_users_table.php.stub'
                 => database_path('migrations/' . date('Y_m_d_His') . '_create_dev_users_table.php'),
+            __DIR__ . '/../database/seeders/DevUserSeeder.php'
+                => database_path('seeders/DevUserSeeder.php'),
 
             // Vendor configs
             base_path('vendor/opcodesio/log-viewer/config/log-viewer.php') => config_path('log-viewer.php'),

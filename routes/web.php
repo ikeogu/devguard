@@ -1,6 +1,6 @@
 <?php
 
-use Emmanuelikeogu\DevMonitoringGuard\Http\Controllers\MonitorController;
+use Emmanuelikeogu\DevGuard\Http\Controllers\MonitorController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 

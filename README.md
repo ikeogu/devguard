@@ -95,7 +95,7 @@ Refer to each tool's documentation for specific configuration options.
 The package provides a custom authentication guard for development users. Use the `DevUser` model for development-specific authentication:
 
 ```php
-use Emmanuelikeogu\DevMonitoringGuard\Models\DevUser;
+use Emmanuelikeogu\DevGuard\Models\DevUser;
 
 // Example usage in your controllers
 $devUser = DevUser::where('email', 'dev@local.test')->first();

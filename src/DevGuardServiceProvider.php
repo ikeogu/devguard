@@ -1,13 +1,13 @@
 <?php
 
-namespace Emmanuelikeogu\DevMonitoringGuard;
+namespace Emmanuelikeogu\DevGuard;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Opcodes\LogViewer\LogViewerServiceProvider as LogViewerLogViewerServiceProvider;
 
 
-class DevMonitoringGuardServiceProvider extends ServiceProvider
+class DevGuardServiceProvider extends ServiceProvider
 {
     public function boot()
     {

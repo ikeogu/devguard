@@ -1,11 +1,11 @@
 <?php
 
-namespace Emmanuelikeogu\DevMonitoringGuard\Database\Seeders;
+namespace Emmanuelikeogu\DevGuard\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Emmanuelikeogu\DevMonitoringGuard\Models\DevUser;
+use Emmanuelikeogu\DevGuard\Models\DevUser;
 
 class DevUserSeeder extends Seeder
 {

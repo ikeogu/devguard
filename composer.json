@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Emmanuelikeogu\\DevMonitoringGuard\\": "src/"
+            "Emmanuelikeogu\\DevGuard\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Emmanuelikeogu\\DevMonitoringGuard\\Tests\\": "tests/"
+            "Emmanuelikeogu\\DevGuard\\Tests\\": "tests/"
         }
     },
     "license": "MIT",
@@ -46,7 +46,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Emmanuelikeogu\\DevMonitoringGuard\\DevMonitoringGuardServiceProvider"
+                "Emmanuelikeogu\\DevGuard\\DevGuardServiceProvider"
             ]
         }
     }

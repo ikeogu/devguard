@@ -25,7 +25,7 @@ return [
     'providers' => [
         'dev-users' => [
             'driver' => 'eloquent',
-            'model' => \Emmanuelikeogu\DevMonitoringGuard\Models\DevUser::class,
+            'model' => \Emmanuelikeogu\DevGuard\Models\DevUser::class,
         ],
     ],
 

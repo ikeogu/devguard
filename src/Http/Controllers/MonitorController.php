@@ -1,6 +1,6 @@
 <?php
 
-namespace Emmanuelikeogu\DevMonitoringGuard\Http\Controllers;
+namespace Emmanuelikeogu\DevGuard\Http\Controllers;
 
 use Inertia\Inertia;
 

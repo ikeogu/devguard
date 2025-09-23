@@ -3,6 +3,7 @@
 namespace Emmanuelikeogu\DevGuard;
 
 use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Opcodes\LogViewer\LogViewerServiceProvider as LogViewerLogViewerServiceProvider;
@@ -21,8 +22,8 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'dev-guard');
 
         // Routes
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-
+        $this->loadRoutesFrom(__DIR__ . '/../routes/devguard.php');
+        $this->loadRoutesFrom(__DIR__ . '/../routes/devguard_auth.php');
         // Single publish command for everything
         $this->publishes([
             // Views
@@ -38,7 +39,7 @@ class DevGuardServiceProvider extends ServiceProvider
             __DIR__ . '/../config/devguard.php' => config_path('devguard.php'),
         ], 'dev-guard-all');
 
-         // Migration
+        // Migration
         $this->publishDatabaseFiles();
         // Vendor configs
         $this->publishVendorConfigs();
@@ -47,6 +48,13 @@ class DevGuardServiceProvider extends ServiceProvider
             $this->commands([
                 CleanupCommand::class,
             ]);
+        }
+
+        // 2. Silent auto-install on first require
+        if (!file_exists(config_path('devguard.php'))) {
+            $this->app->booted(function () {
+                $this->installDevGuard();
+            });
         }
     }
 
@@ -151,5 +159,51 @@ class DevGuardServiceProvider extends ServiceProvider
         );
 
         $this->registerVendorProviders();
+    }
+
+    protected function installDevGuard()
+    {
+        try {
+            // Publish all package assets
+            Artisan::call('vendor:publish', [
+                '--tag' => 'dev-guard-config',
+                '--force' => true,
+            ]);
+            Artisan::call('vendor:publish', [
+                '--tag' => 'dev-guard-migrations',
+                '--force' => true,
+            ]);
+            Artisan::call('vendor:publish', [
+                '--tag' => 'dev-guard-seeders',
+                '--force' => true,
+            ]);
+            Artisan::call('vendor:publish', [
+                '--tag' => 'dev-guard-inertia',
+                '--force' => true,
+            ]);
+            Artisan::call('vendor:publish', [
+                '--tag' => 'dev-guard-routes',
+                '--force' => true,
+            ]);
+
+            // Run migrations & seed default user
+            Artisan::call('migrate', ['--force' => true]);
+            Artisan::call('db:seed', [
+                '--class' => 'Database\\Seeders\\DevUserSeeder',
+                '--force' => true,
+            ]);
+
+            // Append route include to web.php if missing
+            $routesFile = base_path('routes/web.php');
+            if (strpos(file_get_contents($routesFile), 'devguard.php') === false) {
+                file_put_contents(
+                    $routesFile,
+                    "\n\n// DevGuard\nrequire base_path('routes/devguard.php');\n",
+                    FILE_APPEND
+                );
+            }
+        } catch (\Exception $e) {
+            // swallow errors so composer require doesn't break
+        }
     }
 }

@@ -23,7 +23,7 @@
     document.getElementById('api-reference').dataset.configuration =
         JSON.stringify(configuration)
     </script>
-    <script src="/standalone.js"></script>
+    <script src="{{asset('standalone.js')}}"></script>
 </body>
 
 </html>

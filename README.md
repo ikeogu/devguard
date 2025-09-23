@@ -37,6 +37,7 @@ Publish all package files and configurations:
 
 ```bash
 php artisan vendor:publish --tag=dev-guard-all
+npm install && npm run build
 ```
 
 This will publish:

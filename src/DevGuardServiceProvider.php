@@ -27,9 +27,12 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/devguard_auth.php');
         // Single publish command for everything
         $this->publishes([
+
+            //Models
+            __DIR__ . '/../models/DevUser.php' => app_path('Models/DevUser.php'),
             // Views
             __DIR__ . '/../resources/views/app.blade.php' => resource_path('views/app.blade.php'),
-            __DIR__ . '/../resources/views' => resource_path('views/dev-guard'),
+            __DIR__ . '/../resources/views' => resource_path('views'),
 
             // React/JS stubs
             __DIR__ . '/../resources/js' => resource_path('js/vendor/dev-guard'),
@@ -93,6 +96,7 @@ class DevGuardServiceProvider extends ServiceProvider
             $this->publishes($publishes, 'dev-guard-all');
         }
     }
+
     protected function migrationExists($migrationName)
     {
         $migrationPath = database_path('migrations');
@@ -111,6 +115,7 @@ class DevGuardServiceProvider extends ServiceProvider
 
         return false;
     }
+
     protected function publishVendorConfigs()
     {
         $vendorConfigs = [];

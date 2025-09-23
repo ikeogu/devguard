@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Opcodes\LogViewer\LogViewerServiceProvider as LogViewerLogViewerServiceProvider;
-
+use Tighten\Ziggy\ZiggyServiceProvider as ZiggyServiceProvider;
 
 class DevGuardServiceProvider extends ServiceProvider
 {
@@ -136,6 +136,13 @@ class DevGuardServiceProvider extends ServiceProvider
             $telescopeConfig = base_path('vendor/laravel/telescope/config/telescope.php');
             if (file_exists($telescopeConfig)) {
                 $vendorConfigs[$telescopeConfig] = config_path('telescope.php');
+            }
+        }
+
+        if (class_exists(ZiggyServiceProvider::class)) {
+            $ziggyConfig = base_path('vendor/tightenco/ziggy/config/ziggy.php');
+            if (file_exists($ziggyConfig)) {
+                $vendorConfigs[$ziggyConfig] = config_path('ziggy.php');
             }
         }
 

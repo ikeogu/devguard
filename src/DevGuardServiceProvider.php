@@ -34,15 +34,13 @@ class DevGuardServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/vite.config.js' => base_path('vite.config.js'),
             __DIR__ . '/../stubs/tsconfig.json' => base_path('tsconfig.json'),
 
-            // Migration
-            __DIR__ . '/../database/migrations/create_dev_users_table.php.stub'
-            => database_path('migrations/' . date('Y_m_d_His') . '_create_dev_users_table.php'),
-            __DIR__ . '/../database/Seeders/DevUserSeeder.php'
-            => database_path('seeders/DevUserSeeder.php'),
             // Package config
             __DIR__ . '/../config/devguard.php' => config_path('devguard.php'),
         ], 'dev-guard-all');
 
+         // Migration
+        $this->publishDatabaseFiles();
+        // Vendor configs
         $this->publishVendorConfigs();
 
         if ($this->app->runningInConsole()) {
@@ -52,6 +50,48 @@ class DevGuardServiceProvider extends ServiceProvider
         }
     }
 
+
+    protected function publishDatabaseFiles()
+    {
+        $publishes = [];
+
+        // Only publish migration if it doesn't already exist
+        if (!$this->migrationExists('create_dev_users_table')) {
+            $publishes[__DIR__ . '/../database/migrations/create_dev_users_table.php.stub'] =
+                database_path('migrations/' . date('Y_m_d_His') . '_create_dev_users_table.php');
+
+            info('Publishing dev_users migration...');
+        } else {
+            info('Dev users migration already exists, skipping...');
+        }
+
+        // Always allow seeder to be updated
+        $publishes[__DIR__ . '/../database/seeders/DevUserSeeder.php'] =
+            database_path('seeders/DevUserSeeder.php');
+
+        if (!empty($publishes)) {
+            $this->publishes($publishes, 'dev-guard-database');
+            $this->publishes($publishes, 'dev-guard-all');
+        }
+    }
+    protected function migrationExists($migrationName)
+    {
+        $migrationPath = database_path('migrations');
+
+        if (!is_dir($migrationPath)) {
+            return false;
+        }
+
+        $files = scandir($migrationPath);
+
+        foreach ($files as $file) {
+            if (strpos($file, $migrationName) !== false && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
+                return true;
+            }
+        }
+
+        return false;
+    }
     protected function publishVendorConfigs()
     {
         $vendorConfigs = [];

@@ -16,6 +16,7 @@
 
     {{-- ✅ Load your precompiled assets --}}
     @vite('resources/js/app.tsx', 'vendor/devguard')
+
 </head>
 
 <body class="font-sans antialiased">

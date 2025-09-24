@@ -68,6 +68,10 @@ class DevGuardServiceProvider extends ServiceProvider
                 }
             });
         });
+
+        $this->app['router']->pushMiddlewareToGroup('web',
+             \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class);
+
     }
 
 

@@ -5,7 +5,7 @@ use Emmanuelikeogu\DevGuard\Http\Controllers\Auth\AuthenticatedSessionController
 use Emmanuelikeogu\DevGuard\Http\Controllers\Auth\PasswordResetController;
 
 Route::middleware('guest')->prefix('dev')->group(function () {
-    Route::get('login', [LoginController::class, 'create'])->withView('devguard::auth.login')->name('dev.login');
+    Route::get('login', [LoginController::class, 'create'])->name('dev.login');
     Route::post('login', [LoginController::class, 'store']);
 });
 Route::middleware('auth.dev_user')->prefix('dev')->group(function () {

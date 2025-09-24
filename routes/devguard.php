@@ -7,5 +7,5 @@ use Inertia\Inertia;
 
 Route::middleware('auth.dev_user')->group(function () {
 
-    Route::get('/dashboard', [MonitorController::class, 'index'])->withView('devguard::layouts.app')->name('it:dashboard');
+    Route::get('/dashboard', [MonitorController::class, 'index'])->name('it:dashboard');
 });

@@ -14,7 +14,8 @@
     @routes()
 
     {{-- ✅ Load your precompiled assets --}}
-    @vite('resources/js/app.tsx')
+    @vite('resources/js/app.tsx', 'vendor/devguard/build')
+
 
     @inertiaHead
 </head>

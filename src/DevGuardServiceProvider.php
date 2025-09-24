@@ -7,6 +7,7 @@ use Emmanuelikeogu\DevGuard\Helpers\AssetHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Opcodes\LogViewer\LogViewerServiceProvider as LogViewerLogViewerServiceProvider;
 use Tighten\Ziggy\ZiggyServiceProvider as ZiggyServiceProvider;
@@ -71,6 +72,8 @@ class DevGuardServiceProvider extends ServiceProvider
 
         $this->app['router']->pushMiddlewareToGroup('web',
              \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class);
+            
+        Vite::useBuildDirectory('vendor/devguard/build');
 
     }
 

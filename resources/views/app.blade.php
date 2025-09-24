@@ -18,7 +18,7 @@
         @else
             @routes()
             @viteReactRefresh
-            @vite(['resources/js/vendor/devg-uard/app.tsx', "resources/js/vendor/dev-guard/Pages/{$page['component']}.tsx"])
+            @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
             @inertiaHead
         @endenv
 

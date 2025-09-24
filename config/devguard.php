@@ -58,4 +58,6 @@ return [
         'path' => env('DMG_DASHBOARD_PATH', 'dev-monitor'),
         'middleware' => explode(',', env('DMG_DASHBOARD_MIDDLEWARE', 'web,auth')),
     ],
+
+
 ];

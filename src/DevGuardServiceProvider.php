@@ -29,16 +29,16 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->publishes([
 
             //Models
-            __DIR__ . '/../models/DevUser.php' => app_path('Models/DevUser.php'),
-            // Views
-            __DIR__ . '/../resources/views/app.blade.php' => resource_path('views/app.blade.php'),
-            __DIR__ . '/../resources/views' => resource_path('views'),
+            __DIR__ . '/../stubs/DevUser.php.stub' => app_path('Models/DevUser.php'),
+            // Publish assets (compiled React/Inertia build)
+
+            __DIR__ . '/../public/build' => public_path('vendor/devguard/build'),
 
             // React/JS stubs
-            __DIR__ . '/../resources/js' => resource_path('js/vendor/dev-guard'),
+           /*  __DIR__ . '/../resources/js' => resource_path('js/vendor/dev-guard'),
             __DIR__ . '/../stubs/package.json' => base_path('package.json'),
             __DIR__ . '/../stubs/vite.config.js' => base_path('vite.config.js'),
-            __DIR__ . '/../stubs/tsconfig.json' => base_path('tsconfig.json'),
+            __DIR__ . '/../stubs/tsconfig.json' => base_path('tsconfig.json'), */
             __DIR__ . '/../public/standalone.js' => base_path('public/standalone.js'),
 
             // Package config
@@ -66,7 +66,7 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->app->afterResolving(\Illuminate\Foundation\Configuration\Middleware::class, function ($middleware) {
             $middleware->redirectGuestsTo(function (Request $request) {
                 if (! $request->expectsJson()) {
-                    return route('dev.login'); // 👈 your dev login route
+                    return route('dev.login');
                 }
             });
         });

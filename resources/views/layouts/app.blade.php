@@ -12,12 +12,10 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     @routes()
+    @inertiaHead
 
     {{-- ✅ Load your precompiled assets --}}
-    @vite('resources/js/app.tsx', 'vendor/devguard/build')
-
-
-    @inertiaHead
+    @vite('resources/js/app.tsx', 'vendor/devguard/build')  
 </head>
 
 <body class="font-sans antialiased">

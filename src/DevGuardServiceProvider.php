@@ -21,7 +21,7 @@ class DevGuardServiceProvider extends ServiceProvider
         });
 
         // Load package views
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'dev-guard');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'devguard');
 
         // Routes
         $this->loadRoutesFrom(__DIR__ . '/../routes/devguard.php');

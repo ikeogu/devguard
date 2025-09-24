@@ -35,12 +35,8 @@ class DevGuardServiceProvider extends ServiceProvider
 
             __DIR__ . '/../public/build' => public_path('vendor/devguard/build'),
 
-
+             __DIR__.'/../resources/views' => resource_path('views/vendor/devguard'),
             // React/JS stubs
-           /*  __DIR__ . '/../resources/js' => resource_path('js/vendor/dev-guard'),
-            __DIR__ . '/../stubs/package.json' => base_path('package.json'),
-            __DIR__ . '/../stubs/vite.config.js' => base_path('vite.config.js'),
-            __DIR__ . '/../stubs/tsconfig.json' => base_path('tsconfig.json'), */
             __DIR__ . '/../public/standalone.js' => base_path('public/standalone.js'),
 
             // Package config

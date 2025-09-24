@@ -3,6 +3,7 @@
 namespace Emmanuelikeogu\DevGuard;
 
 use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
+use Emmanuelikeogu\DevGuard\Helpers\AssetHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,7 @@ class DevGuardServiceProvider extends ServiceProvider
             // Publish assets (compiled React/Inertia build)
 
             __DIR__ . '/../public/build' => public_path('vendor/devguard/build'),
+
 
             // React/JS stubs
            /*  __DIR__ . '/../resources/js' => resource_path('js/vendor/dev-guard'),

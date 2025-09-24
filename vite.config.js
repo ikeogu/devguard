@@ -10,4 +10,21 @@ export default defineConfig({
         }),
         react(),
     ],
+      build: {
+        outDir: 'dist',
+        emptyOutDir: true,
+        rollupOptions: {
+            output: {
+                // Clean file names for easier reference
+                entryFileNames: 'js/[name].js',
+                chunkFileNames: 'js/[name].js', 
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name.endsWith('.css')) {
+                        return 'css/[name].[ext]';
+                    }
+                    return 'assets/[name].[ext]';
+                }
+            }
+        }
+    }
 });

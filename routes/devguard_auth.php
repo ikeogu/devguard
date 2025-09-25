@@ -6,7 +6,7 @@ use Emmanuelikeogu\DevGuard\Http\Controllers\Auth\PasswordResetController;
 use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests as DevGuardInertiaMiddleware;
 
 Route::middleware(['guest','web', DevGuardInertiaMiddleware::class])->prefix('dev')->group(function () {
-    Route::get('login', [LoginController::class, 'create'])->name('dev.login');
+    Route::get('login', [LoginController::class, 'create'])->name('it:login');
     Route::post('login', [LoginController::class, 'store']);
 });
 Route::middleware('auth.dev_user', DevGuardInertiaMiddleware::class)->prefix('dev')->group(function () {

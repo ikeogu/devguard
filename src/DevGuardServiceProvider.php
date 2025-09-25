@@ -16,6 +16,7 @@ class DevGuardServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        Vite::useBuildDirectory('vendor/devguard');
         // Custom Auth guard
         Auth::extend('dev-user', function ($app, $name, array $config) {
             return Auth::createUserProvider($config['provider']);

@@ -7,7 +7,7 @@ use Inertia\Inertia;
 
 
 
-Route::middleware(['auth.dev_user', DevGuardInertiaMiddleware::class])
+Route::middleware(['auth:dev_user', DevGuardInertiaMiddleware::class])
     ->prefix('dev')
     ->group(function () {
         Route::get('/dashboard', fn () => Inertia::render('Dashboard'))

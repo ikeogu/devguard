@@ -10,6 +10,6 @@ use Inertia\Inertia;
 Route::middleware(['auth:dev_user', DevGuardInertiaMiddleware::class])
     ->prefix('dev')
     ->group(function () {
-        Route::get('dev/dashboard', fn () => Inertia::render('Dashboard'))
+        Route::get('dashboard', fn () => Inertia::render('Dashboard'))
             ->name('it:dashboard');
     });

@@ -22,7 +22,6 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'devguard');
 
         // Routes
-        $this->loadRoutesFrom(__DIR__ . '/../routes/devguard.php');
         $this->loadRoutesFrom(__DIR__ . '/../routes/devguard_auth.php');
         // Single publish command for everything
         $this->publishes([

@@ -76,7 +76,7 @@ class DevGuardServiceProvider extends ServiceProvider
             \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class
         );
 
-        //Vite::useBuildDirectory('vendor/devguard');
+        $this->mergeAuthConfig();
     }
 
 
@@ -234,6 +234,31 @@ class DevGuardServiceProvider extends ServiceProvider
             }
         } catch (\Exception $e) {
             // swallow errors so composer require doesn't break
+        }
+    }
+
+    protected function mergeAuthConfig()
+    {
+        $config = $this->app['config'];
+
+        // 1. Add dev-user guard if not already present
+        $guards = $config->get('auth.guards', []);
+        if (! isset($guards['dev-user'])) {
+            $guards['dev-user'] = [
+                'driver' => 'session',
+                'provider' => 'dev-users',
+            ];
+            $config->set('auth.guards', $guards);
+        }
+
+        // 2. Add dev-users provider if not already present
+        $providers = $config->get('auth.providers', []);
+        if (! isset($providers['dev-users'])) {
+            $providers['dev-users'] = [
+                'driver' => 'eloquent',
+                'model' => \Emmanuelikeogu\DevGuard\Models\DevUser::class,
+            ];
+            $config->set('auth.providers', $providers);
         }
     }
 }

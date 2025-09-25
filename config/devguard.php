@@ -13,12 +13,12 @@ return [
     | Authentication Guard
     |--------------------------------------------------------------------------
     */
-    'guard' => 'dev-user',
+    'guard' => 'dev_user',
 
     'guards' => [
-        'dev-user' => [
+        'dev_user' => [
             'driver' => 'session',
-            'provider' => 'dev-users',
+            'provider' => 'dev_users',
         ],
     ],
 

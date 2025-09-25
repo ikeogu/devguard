@@ -17,11 +17,9 @@ class DevGuardServiceProvider extends ServiceProvider
     public function boot()
     {
         Vite::useBuildDirectory('vendor/devguard');
+        
         // Custom Auth guard
-        Auth::extend('dev-user', function ($app, $name, array $config) {
-            return Auth::createUserProvider($config['provider']);
-        });
-
+         $this->mergeAuthConfig();
         // Load package views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'devguard');
 
@@ -76,7 +74,7 @@ class DevGuardServiceProvider extends ServiceProvider
             \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class
         );
 
-        $this->mergeAuthConfig();
+       
     }
 
 

@@ -308,7 +308,7 @@ class DevGuardServiceProvider extends ServiceProvider
                 //\Laravel\Telescope\Telescope::routes();
             }
 
-            if (class_exists(\Opcodes\LogViewer\LogViewerServiceProvider::class)) {
+            if (class_exists(LogViewerLogViewerServiceProvider::class)) {
                 Route::get('logs/{any?}', '\Opcodes\LogViewer\Http\Controllers\LogViewerController')
                     ->where('any', '.*');
             }

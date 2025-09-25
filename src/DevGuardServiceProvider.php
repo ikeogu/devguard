@@ -71,6 +71,8 @@ class DevGuardServiceProvider extends ServiceProvider
             'web',
             \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class
         );
+
+        $this->enforceThirdPartyConfig();
     }
 
 

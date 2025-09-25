@@ -62,7 +62,7 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->app->afterResolving(\Illuminate\Foundation\Configuration\Middleware::class, function ($middleware) {
             $middleware->redirectGuestsTo(function (Request $request) {
                 if (! $request->expectsJson()) {
-                    return route('dev.login');
+                    return route('it:login');
                 }
             });
         });

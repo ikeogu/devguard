@@ -34,7 +34,7 @@ class DevGuardServiceProvider extends ServiceProvider
             __DIR__ . '/../stubs/DevUser.php.stub' => app_path('Models/DevUser.php'),
             // Publish assets (compiled React/Inertia build)
 
-            __DIR__ . '/../dist' => public_path('vendor/devguard/build'),
+            __DIR__ . '/../dist' => public_path('vendor/devguard'),
 
             __DIR__ . '/../resources/views' => resource_path('views/vendor/devguard'),
             // React/JS stubs
@@ -75,7 +75,7 @@ class DevGuardServiceProvider extends ServiceProvider
             \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class
         );
 
-        Vite::useBuildDirectory('vendor/devguard/build');
+        //Vite::useBuildDirectory('vendor/devguard');
     }
 
 

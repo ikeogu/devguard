@@ -23,7 +23,7 @@ return [
     ],
 
     'providers' => [
-        'dev-users' => [
+        'dev_users' => [
             'driver' => 'eloquent',
             'model' => \Emmanuelikeogu\DevGuard\Models\DevUser::class,
         ],

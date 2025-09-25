@@ -15,7 +15,8 @@
     @inertiaHead
 
     {{-- ✅ Load your precompiled assets --}}
-    @vite('resources/js/app.tsx')
+    @viteReactRefresh
+    @vite('resources/js/app.tsx', 'vendor/devguard')
 
 </head>
 

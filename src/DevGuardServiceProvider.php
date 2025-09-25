@@ -239,20 +239,20 @@ class DevGuardServiceProvider extends ServiceProvider
     {
         $config = $this->app['config'];
 
-        // 1. Add dev-user guard if not already present
+        // 1. Add dev_user guard if not already present
         $guards = $config->get('auth.guards', []);
-        if (! isset($guards['dev-user'])) {
-            $guards['dev-user'] = [
+        if (! isset($guards['dev_user'])) {
+            $guards['dev_user'] = [
                 'driver' => 'session',
-                'provider' => 'dev-users',
+                'provider' => 'dev_users',
             ];
             $config->set('auth.guards', $guards);
         }
 
-        // 2. Add dev-users provider if not already present
+        // 2. Add dev_users provider if not already present
         $providers = $config->get('auth.providers', []);
-        if (! isset($providers['dev-users'])) {
-            $providers['dev-users'] = [
+        if (! isset($providers['dev_users'])) {
+            $providers['dev_users'] = [
                 'driver' => 'eloquent',
                 'model' => \Emmanuelikeogu\DevGuard\Models\DevUser::class,
             ];

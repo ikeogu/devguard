@@ -17,9 +17,7 @@ class DevGuardServiceProvider extends ServiceProvider
     public function boot()
     {
         Vite::useBuildDirectory('vendor/devguard');
-        
-        // Custom Auth guard
-         $this->mergeAuthConfig();
+
         // Load package views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'devguard');
 
@@ -185,6 +183,8 @@ class DevGuardServiceProvider extends ServiceProvider
             __DIR__ . '/../config/devguard.php',
             'devguard'
         );
+
+        $this->mergeAuthConfig();
 
         $this->registerVendorProviders();
     }

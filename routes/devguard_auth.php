@@ -7,7 +7,7 @@ use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests as DevGuardIne
 
 Route::middleware(['guest','web', DevGuardInertiaMiddleware::class])->prefix('dev')->group(function () {
     Route::get('login', [LoginController::class, 'create'])->name('it:login');
-    Route::post('login', [LoginController::class, 'store']);
+    Route::post('login', [LoginController::class, 'store'])->name('login');
 });
 Route::middleware('auth.dev_user', DevGuardInertiaMiddleware::class)->prefix('dev')->group(function () {
     Route::post('logout', [LoginController::class, 'destroy'])->name('dev.logout');

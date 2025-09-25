@@ -42,12 +42,12 @@ export default function Authenticated({
                             >
                                 Log Viewer
                             </a>
-                                {/* <NavLink
+                             <NavLink
                                     href={route('telescope')}
                                     active={route().current('telescope')}
                                 >
                                     Telescope
-                                </NavLink> */}
+                                </NavLink>
 
                                 <NavLink
                                     href={route('scramble.docs.ui')}
@@ -86,11 +86,7 @@ export default function Authenticated({
                                     </Dropdown.Trigger>
 
                                     <Dropdown.Content>
-                                        <Dropdown.Link
-                                            href={route('it:profile.edit')}
-                                        >
-                                            Profile
-                                        </Dropdown.Link>
+                                        
                                         <Dropdown.Link
                                             href={route('it:logout')}
                                             method="post"
@@ -172,9 +168,7 @@ export default function Authenticated({
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('it:profile.edit')}>
-                                Profile
-                            </ResponsiveNavLink>
+                           
                             <ResponsiveNavLink
                                 method="post"
                                 href={route('it:logout')}

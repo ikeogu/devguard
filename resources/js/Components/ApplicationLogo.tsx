@@ -3,7 +3,7 @@ import { SVGAttributes } from 'react';
 export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
     return (
       
-        <svg {...props} xmlns="http://www.w3.org/2000/svg" width="480" height="120" viewBox="0 0 480 120" role="img" aria-labelledby="titleDesc">
+        <svg {...props} xmlns="http://www.w3.org/2000/svg" width="500" height="150" viewBox="0 0 500 150" role="img" aria-labelledby="titleDesc">
         <title id="titleDesc">DevGuard logo</title>
         <desc id="descDesc">A shield icon with the word DevGuard</desc>
 
@@ -20,9 +20,9 @@ export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
 
 
       
-        <g transform="translate(140,120)" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">
+        <g transform="translate(20,110)" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">
             <text x="0" y="0" font-size="100" font-weight="700" fill="#ebebf4">Dev</text>
-            <text x="250" y="0" font-size="100" font-weight="700" fill="#301ada">Guard</text>
+            <text x="200" y="0" font-size="100" font-weight="700" fill="#301ada">Guard</text>
         </g>
 
 

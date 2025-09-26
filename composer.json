@@ -42,11 +42,14 @@
         "post-package-update": [
             "@php artisan vendor:publish --tag=dev-guard-all --force"
         ],
-        "post-package-uninstall": [
-            "@php artisan devguard:uninstall --force"
-        ],
-         "pre-package-uninstall": [
+        "pre-package-uninstall": [
             "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::prePackageUninstall"
+        ],
+        "post-package-uninstall": [
+            "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::postPackageUninstall"
+        ],
+        "pre-autoload-dump": [
+           "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::preAutoloadDump"
         ]
     },
 

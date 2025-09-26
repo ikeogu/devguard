@@ -17,8 +17,6 @@ export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
             <circle cx="48" cy="52" r="6" fill="#fff"/>
             <rect x="44" y="60" width="8" height="18" rx="3" fill="#fff"/>
         </g>
-
-
       
         <g transform="translate(20,110)" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">
             <text x="0" y="0" font-size="100" font-weight="700" fill="#ebebf4">Dev</text>

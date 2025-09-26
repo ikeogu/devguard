@@ -2,11 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Emmanuelikeogu\DevGuard\Http\Controllers\Auth\AuthenticatedSessionController as LoginController;
-use Emmanuelikeogu\DevGuard\Http\Controllers\Auth\PasswordResetController;
 use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests as DevGuardInertiaMiddleware;
+use Emmanuelikeogu\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
 use Inertia\Inertia;
 
-Route::middleware(['web', 'guest:dev_user', DevGuardInertiaMiddleware::class])
+Route::middleware(['web', 'guest:dev_user', DevGuardInertiaMiddleware::class, RedirectIfDevUserAuthenticated::class])
     ->prefix('dev')
     ->group(function () {
         Route::get('login', [LoginController::class, 'create'])->name('it:login');

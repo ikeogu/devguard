@@ -33,7 +33,8 @@ class DevGuardServiceProvider extends ServiceProvider
 
             __DIR__ . '/../dist' => public_path('vendor/devguard'),
 
-            __DIR__ . '/../resources/views' => resource_path('views/vendor/devguard'),
+            __DIR__ . '/../resources/views/layouts' => resource_path('views/vendor/devguard/layouts'),
+            __DIR__ . '/../resources/views/vendor' => resource_path('views/vendor'),
             // React/JS stubs
             __DIR__ . '/../public/standalone.js' => base_path('public/standalone.js'),
 

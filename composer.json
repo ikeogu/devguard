@@ -44,6 +44,9 @@
         ],
         "post-package-uninstall": [
             "@php artisan devguard:uninstall --force"
+        ],
+         "pre-package-uninstall": [
+            "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::prePackageUninstall"
         ]
     },
 

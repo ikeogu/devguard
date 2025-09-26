@@ -19,10 +19,12 @@ export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
         </g>
 
 
-        <g transform="translate(140,72)" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" >
-            <text x="0" y="0" font-size="120" font-weight="700" fill="#ebebf4ff">Dev</text>
-            <text x="72" y="0" font-size="120" font-weight="700" fill="#301adaff">Guard</text>
+      
+        <g transform="translate(140,120)" font-family="Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial">
+            <text x="0" y="0" font-size="100" font-weight="700" fill="#ebebf4">Dev</text>
+            <text x="250" y="0" font-size="100" font-weight="700" fill="#301ada">Guard</text>
         </g>
+
 
         <rect x="140" y="84" width="240" height="2" rx="1" fill="#c3c1edff" opacity="0.6"/>
         </svg>

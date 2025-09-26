@@ -3,86 +3,87 @@
 namespace Emmanuelikeogu\DevGuard\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 
 class CleanupCommand extends Command
 {
-    protected $signature = 'devguard:cleanup';
-    protected $description = 'Remove DevGuard published files and database tables';
+    protected $signature = 'devguard:cleanup {--force : Run without confirmation}';
+    protected $description = 'Completely remove DevGuard published files, configs, and database tables';
 
     public function handle()
     {
-        $this->info('Cleaning up DevGuard...');
+        $this->info('🧹 Starting DevGuard cleanup...');
 
-        // Drop dev_users table if exists
+        if (! $this->option('force') && 
+            ! $this->confirm('This will permanently delete DevGuard files, configs, and tables. Continue?')) {
+            $this->warn('Cleanup cancelled.');
+            return;
+        }
+
+        // Drop dev_users table
         if (Schema::hasTable('dev_users')) {
             Schema::drop('dev_users');
-            $this->info('Dropped table: dev_users');
+            $this->line('✔ Dropped table: dev_users');
         }
 
-        // Delete migration file
-        foreach (glob(database_path('migrations/*create_dev_users_table*.php')) as $file) {
-            File::delete($file);
-            $this->info("Deleted migration: {$file}");
-        }
+        // Delete migrations
+        $this->deleteGlob(database_path('migrations/*create_dev_users_table*.php'), 'migration');
 
         // Delete seeder
-        $seeder = database_path('seeders/DevUserSeeder.php');
-        if (File::exists($seeder)) {
-            File::delete($seeder);
-            $this->info("Deleted seeder: {$seeder}");
-        }
+        $this->deleteFile(database_path('seeders/DevUserSeeder.php'), 'seeder');
 
         // Delete model
-        $model = app_path('Models/DevUser.php');
-        if (File::exists($model)) {
-            File::delete($model);
-            $this->info("Deleted model: {$model}");
-        }
+        $this->deleteFile(app_path('Models/DevUser.php'), 'model');
 
-        // Delete config file
-        $config = config_path('devguard.php');
-        if (File::exists($config)) {
-            File::delete($config);
-            $this->info("Deleted config: {$config}");
-        }
-
-         $logViewerConfig = config_path('log-viewer.php');
-        if (File::exists($logViewerConfig)) {
-            File::delete($logViewerConfig);
-            $this->info("Deleted config: {$logViewerConfig}");
-        }
-
-        $scrambleConfig = config_path('scramble.php');
-        if (File::exists($scrambleConfig)) {
-            File::delete($scrambleConfig);
-            $this->info("Deleted config: {$scrambleConfig}");
-        }
-
-        $telescopeConfig = config_path('telescope.php');
-        if (File::exists($telescopeConfig)) {
-            File::delete($telescopeConfig);
-            $this->info("Deleted config: {$telescopeConfig}");
+        // Delete configs
+        foreach (['devguard.php', 'log-viewer.php', 'scramble.php', 'telescope.php', 'ziggy.php'] as $config) {
+            $this->deleteFile(config_path($config), "config: {$config}");
         }
 
         // Delete published assets
-        $assetsPath = public_path('vendor/devguard');
-        if (File::exists($assetsPath)) {
-            File::deleteDirectory($assetsPath);
-            $this->info("Deleted assets directory: {$assetsPath}");
-        }
+        $this->deleteDirectory(public_path('vendor/devguard'), 'assets directory');
 
         // Delete standalone.js
-        $standalone = public_path('standalone.js');
-        if (File::exists($standalone)) {
-            File::delete($standalone);
-            $this->info("Deleted file: {$standalone}");
+        $this->deleteFile(public_path('standalone.js'), 'standalone.js');
+
+        // Delete published views (if any)
+        foreach (['devguard', 'scramble', 'log-viewer'] as $viewFolder) {
+            $this->deleteDirectory(resource_path("views/vendor/{$viewFolder}"), "views: {$viewFolder}");
         }
 
-        // Delete 
+        $this->info('✅ DevGuard cleanup completed successfully!');
+    }
 
-        $this->info('DevGuard cleanup completed ✅');
+    /**
+     * Delete a single file with logging
+     */
+    protected function deleteFile($path, $label)
+    {
+        if (File::exists($path)) {
+            File::delete($path);
+            $this->line("✔ Deleted {$label}: {$path}");
+        }
+    }
+
+    /**
+     * Delete directory with logging
+     */
+    protected function deleteDirectory($path, $label)
+    {
+        if (File::exists($path)) {
+            File::deleteDirectory($path);
+            $this->line("✔ Deleted {$label}: {$path}");
+        }
+    }
+
+    /**
+     * Delete multiple files by pattern
+     */
+    protected function deleteGlob($pattern, $label)
+    {
+        foreach (glob($pattern) as $file) {
+            $this->deleteFile($file, $label);
+        }
     }
 }

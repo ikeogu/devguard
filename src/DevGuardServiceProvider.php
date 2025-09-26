@@ -304,23 +304,5 @@ class DevGuardServiceProvider extends ServiceProvider
             $config->set('scramble', $scrambleConfig);
         }
 
-
-        Route::middleware(['web', 'auth:dev-user'])
-            ->group(function () {
-                // Re-mount Telescope, Log Viewer, Scramble here
-                if (class_exists(\Laravel\Telescope\Telescope::class)) {
-                    //\Laravel\Telescope\Telescope::routes();
-                }
-
-                if (class_exists(LogViewerLogViewerServiceProvider::class)) {
-                    Route::get('logs/{any?}', '\Opcodes\LogViewer\Http\Controllers\LogViewerController')
-                        ->where('any', '.*');
-                }
-
-                if (class_exists(\Dedoc\Scramble\ScrambleServiceProvider::class)) {
-                    Route::get('api/docs/{any?}', '\Dedoc\Scramble\Http\Controllers\DocsController')
-                        ->where('any', '.*');
-                }
-            });
     }
 }

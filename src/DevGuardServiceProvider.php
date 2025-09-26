@@ -297,16 +297,10 @@ class DevGuardServiceProvider extends ServiceProvider
                 ['web', 'auth:dev_user']
             ));
 
-            $scrambleConfig['routes'] = array_unique(array_merge(
-                $scrambleConfig['routes'] ?? [],
-                [
-                    'enabled' => true,
-                    'middleware' => ['web', 'auth:dev_user'],
-                ]
-            ));
-
-
-
+            $scrambleConfig['routes'] = [
+                'enabled' => true,
+                'middleware' => ['web', 'auth:dev_user'],
+            ];
             $config->set('scramble', $scrambleConfig);
         }
 

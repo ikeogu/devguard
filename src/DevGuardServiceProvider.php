@@ -3,10 +3,8 @@
 namespace Emmanuelikeogu\DevGuard;
 
 use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
-use Emmanuelikeogu\DevGuard\Helpers\AssetHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -272,8 +270,8 @@ class DevGuardServiceProvider extends ServiceProvider
         // Enforce Log Viewer config
         if (class_exists(LogViewerLogViewerServiceProvider::class)) {
             $logViewerConfig = $config->get('log-viewer', []);
-            $logViewerConfig['route']['middleware'] = array_unique(array_merge(
-                $logViewerConfig['route']['middleware'] ?? [],
+            $logViewerConfig['middleware'] = array_unique(array_merge(
+                $logViewerConfig['middleware'] ?? [],
                 ['web', 'auth:dev_user']
             ));
             $config->set('log-viewer', $logViewerConfig);
@@ -293,30 +291,42 @@ class DevGuardServiceProvider extends ServiceProvider
         // Enforce Scramble config
         if (class_exists(\Dedoc\Scramble\ScrambleServiceProvider::class)) {
             $scrambleConfig = $config->get('scramble', []);
-            $scrambleConfig['route_middleware'] = array_unique(array_merge(
-                $scrambleConfig['route_middleware'] ?? [],
+
+            $scrambleConfig['middleware'] = array_unique(array_merge(
+                $scrambleConfig['middleware'] ?? [],
                 ['web', 'auth:dev_user']
             ));
+
+            $scrambleConfig['routes'] = array_unique(array_merge(
+                $scrambleConfig['routes'] ?? [],
+                [
+                    'enabled' => true,
+                    'middleware' => ['web', 'auth:dev_user'],
+                ]
+            ));
+
+
+
             $config->set('scramble', $scrambleConfig);
         }
 
 
         Route::middleware(['web', 'auth:dev-user'])
-        ->group(function () {
-            // Re-mount Telescope, Log Viewer, Scramble here
-            if (class_exists(\Laravel\Telescope\Telescope::class)) {
-                //\Laravel\Telescope\Telescope::routes();
-            }
+            ->group(function () {
+                // Re-mount Telescope, Log Viewer, Scramble here
+                if (class_exists(\Laravel\Telescope\Telescope::class)) {
+                    //\Laravel\Telescope\Telescope::routes();
+                }
 
-            /* if (class_exists(LogViewerLogViewerServiceProvider::class)) {
-                Route::get('logs/{any?}', '\Opcodes\LogViewer\Http\Controllers\LogViewerController')
-                    ->where('any', '.*');
-            }
+                if (class_exists(LogViewerLogViewerServiceProvider::class)) {
+                    Route::get('logs/{any?}', '\Opcodes\LogViewer\Http\Controllers\LogViewerController')
+                        ->where('any', '.*');
+                }
 
-            if (class_exists(\Dedoc\Scramble\ScrambleServiceProvider::class)) {
-                Route::get('api/docs/{any?}', '\Dedoc\Scramble\Http\Controllers\DocsController')
-                    ->where('any', '.*');
-            } */
-        });
+                if (class_exists(\Dedoc\Scramble\ScrambleServiceProvider::class)) {
+                    Route::get('api/docs/{any?}', '\Dedoc\Scramble\Http\Controllers\DocsController')
+                        ->where('any', '.*');
+                }
+            });
     }
 }

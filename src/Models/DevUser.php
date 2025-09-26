@@ -1,6 +1,6 @@
 <?php
 
-namespace Emmanuelikeogu\DevGuard\Models;
+namespace ZojaTech\DevGuard\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Emmanuelikeogu\DevGuard\Http\Middleware;
+namespace ZojaTech\DevGuard\Http\Middleware;
 
 use Inertia\Middleware;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Emmanuelikeogu\DevGuard;
+namespace ZojaTech\DevGuard;
 
-use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
-use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests;
-use Emmanuelikeogu\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
+use ZojaTech\DevGuard\Console\CleanupCommand;
+use ZojaTech\DevGuard\Http\Middleware\HandleInertiaRequests;
+use ZojaTech\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -267,7 +267,7 @@ class DevGuardServiceProvider extends ServiceProvider
         if (! isset($providers['dev_users'])) {
             $providers['dev_users'] = [
                 'driver' => 'eloquent',
-                'model' => \Emmanuelikeogu\DevGuard\Models\DevUser::class,
+                'model' => \ZojaTech\DevGuard\Models\DevUser::class,
             ];
             $config->set('auth.providers', $providers);
         }

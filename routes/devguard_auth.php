@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Emmanuelikeogu\DevGuard\Http\Controllers\Auth\AuthenticatedSessionController as LoginController;
-use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests as DevGuardInertiaMiddleware;
-use Emmanuelikeogu\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
+use ZojaTech\DevGuard\Http\Controllers\Auth\AuthenticatedSessionController as LoginController;
+use ZojaTech\DevGuard\Http\Middleware\HandleInertiaRequests as DevGuardInertiaMiddleware;
+use ZojaTech\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
 use Inertia\Inertia;
 
 Route::middleware(['web','redirect.if.dev_user', 'guest:dev_user', DevGuardInertiaMiddleware::class])

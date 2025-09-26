@@ -15,7 +15,7 @@ A comprehensive Laravel package that provides development monitoring and guard f
 ## Requirements
 
 - PHP 8.1 or higher
-- Laravel 10.0 or 11.0
+- Laravel 10.0 or 11.0, 12.0
 - Composer
 
 ## Installation
@@ -23,7 +23,7 @@ A comprehensive Laravel package that provides development monitoring and guard f
 ### 1. Install the Package
 
 ```bash
-composer require ikeogu/devguard
+composer require zojatech/devguard
 ```
 
 This will automatically install all required dependencies:
@@ -37,7 +37,6 @@ Publish all package files and configurations:
 
 ```bash
 php artisan vendor:publish --tag=dev-guard-all
-npm install && npm run build
 ```
 
 This will publish:
@@ -96,7 +95,7 @@ Refer to each tool's documentation for specific configuration options.
 The package provides a custom authentication guard for development users. Use the `DevUser` model for development-specific authentication:
 
 ```php
-use Emmanuelikeogu\DevGuard\Models\DevUser;
+use ZojaTech\DevGuard\Models\DevUser;
 
 // Example usage in your controllers
 $devUser = DevUser::where('email', 'dev@local.test')->first();
@@ -115,14 +114,6 @@ Once installed and configured:
 You can publish specific parts of the package separately:
 
 ```bash
-# Publish only core package files (views, JS, config)
-php artisan vendor:publish --tag=dev-guard-core
-
-# Publish only database files (migration, seeder)
-php artisan vendor:publish --tag=dev-guard-database
-
-# Publish only vendor configuration files
-php artisan vendor:publish --tag=dev-guard-vendor-configs
 
 # Force republish all files (overwrites existing)
 php artisan vendor:publish --tag=dev-guard-all --force
@@ -167,6 +158,13 @@ php artisan vendor:publish --tag=dev-guard-all
 php artisan migrate:fresh
 php artisan db:seed --class=DevUserSeeder
 ```
+
+### Uninstall Package
+
+```bash
+php artisan devguard:uninstall --force 
+composer remove zojatech/devguard
+
 
 ## Contributing
 

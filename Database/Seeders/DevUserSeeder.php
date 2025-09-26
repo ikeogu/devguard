@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Emmanuelikeogu\DevGuard\Models\DevUser;
+use ZojaTech\DevGuard\Models\DevUser;
 
 class DevUserSeeder extends Seeder
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Emmanuelikeogu\DevGuard\Http\Controllers\Auth;
+namespace ZojaTech\DevGuard\Http\Controllers\Auth;
 
-use Emmanuelikeogu\DevGuard\Http\Controllers\Controller;
-use Emmanuelikeogu\DevGuard\Http\Requests\Auth\LoginRequest as AuthLoginRequest;
+use ZojaTech\DevGuard\Http\Controllers\Controller;
+use ZojaTech\DevGuard\Http\Requests\Auth\LoginRequest as AuthLoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

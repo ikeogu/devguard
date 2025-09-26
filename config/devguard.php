@@ -25,7 +25,7 @@ return [
     'providers' => [
         'dev_users' => [
             'driver' => 'eloquent',
-            'model' => \Emmanuelikeogu\DevGuard\Models\DevUser::class,
+            'model' => \ZojaTech\DevGuard\Models\DevUser::class,
         ],
     ],
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Emmanuelikeogu\DevGuard\Http\Controllers;
+namespace ZojaTech\DevGuard\Http\Controllers;
 
 abstract class Controller
 {

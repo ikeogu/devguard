@@ -1,6 +1,6 @@
 <?php
 
-namespace Emmanuelikeogu\DevGuard\Console;
+namespace ZojaTech\DevGuard\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;

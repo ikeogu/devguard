@@ -1,5 +1,5 @@
 {
-    "name": "ikeogu/devguard",
+    "name": "zojatech/devguard",
     "description": "A Laravel package that provides a secure dashboard for developer tools like Telescope, Log Viewer, and Scramble, protected by a custom DevUser guard.",
     "type": "library",
     "require": {
@@ -17,12 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Emmanuelikeogu\\DevGuard\\": "src/"
+            "ZojaTech\\DevGuard\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Emmanuelikeogu\\DevGuard\\Tests\\": "tests/"
+            "ZojaTech\\DevGuard\\Tests\\": "tests/"
         }
     },
     "license": "MIT",
@@ -44,23 +44,23 @@
             "@php artisan vendor:publish --tag=dev-guard-all --force"
         ],
         "pre-package-uninstall": [
-            "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::prePackageUninstall"
+            "ZojaTech\\DevGuard\\Composer\\CleanupHandler::prePackageUninstall"
         ],
         "post-package-uninstall": [
-            "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::postPackageUninstall"
+            "ZojaTech\\DevGuard\\Composer\\CleanupHandler::postPackageUninstall"
         ],
         "pre-autoload-dump": [
-           "Emmanuelikeogu\\DevGuard\\Composer\\CleanupHandler::preAutoloadDump"
+           "ZojaTech\\DevGuard\\Composer\\CleanupHandler::preAutoloadDump"
         ]
     },
 
     "extra": {
         "laravel": {
             "providers": [
-                "Emmanuelikeogu\\DevGuard\\DevGuardServiceProvider"
+                "ZojaTech\\DevGuard\\DevGuardServiceProvider"
             ]
         },
-        
-        "class": "Emmanuelikeogu\\DevGuard\\DevGuardUninstallPlugin"
+
+        "class": "ZojaTech\\DevGuard\\DevGuardUninstallPlugin"
     }
 }

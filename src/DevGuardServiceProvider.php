@@ -70,7 +70,7 @@ class DevGuardServiceProvider extends ServiceProvider
             \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class
         );
 
-        $this->enforceThirdPartyConfig();
+       /// $this->enforceThirdPartyConfig();
     }
 
 
@@ -96,6 +96,8 @@ class DevGuardServiceProvider extends ServiceProvider
             $this->publishes($publishes, 'dev-guard-database');
             $this->publishes($publishes, 'dev-guard-all');
         }
+
+        $this->enforceThirdPartyConfig();
     }
 
     protected function migrationExists($migrationName)

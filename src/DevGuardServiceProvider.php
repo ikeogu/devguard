@@ -3,6 +3,8 @@
 namespace Emmanuelikeogu\DevGuard;
 
 use Emmanuelikeogu\DevGuard\Console\CleanupCommand;
+use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests;
+use Emmanuelikeogu\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -65,9 +67,16 @@ class DevGuardServiceProvider extends ServiceProvider
             });
         });
 
-        $this->app['router']->pushMiddlewareToGroup(
+        $router = $this->app['router'];
+
+        $router->pushMiddlewareToGroup(
             'web',
-            \Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests::class
+            HandleInertiaRequests::class
+        );
+
+        $router->aliasMiddleware(
+            'redirect.if.dev_user',
+            RedirectIfDevUserAuthenticated::class
         );
     }
 
@@ -303,6 +312,5 @@ class DevGuardServiceProvider extends ServiceProvider
             ];
             $config->set('scramble', $scrambleConfig);
         }
-
     }
 }

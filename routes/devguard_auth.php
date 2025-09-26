@@ -6,7 +6,7 @@ use Emmanuelikeogu\DevGuard\Http\Middleware\HandleInertiaRequests as DevGuardIne
 use Emmanuelikeogu\DevGuard\Http\Middleware\RedirectIfDevUserAuthenticated;
 use Inertia\Inertia;
 
-Route::middleware(['web', 'guest:dev_user', DevGuardInertiaMiddleware::class, RedirectIfDevUserAuthenticated::class])
+Route::middleware(['web','redirect.if.dev_user', 'guest:dev_user', DevGuardInertiaMiddleware::class])
     ->prefix('dev')
     ->group(function () {
         Route::get('login', [LoginController::class, 'create'])->name('it:login');

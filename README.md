@@ -162,7 +162,7 @@ php artisan db:seed --class=DevUserSeeder
 ### Uninstall Package
 
 ```bash
-php artisan devguard:uninstall --force 
+php artisan devguard:cleanup --force 
 composer remove zojatech/devguard
 
 

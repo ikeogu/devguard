@@ -9,8 +9,7 @@
        "opcodesio/log-viewer": "^3.0",
        "dedoc/scramble": "^0.12.32",
        "inertiajs/inertia-laravel": "^1.0",
-       "tightenco/ziggy": "^2.0",
-        "spatie/laravel-package-tools": "^1.92"
+       "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
         "orchestra/testbench": "^9.0"

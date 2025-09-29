@@ -23,7 +23,9 @@ A comprehensive Laravel package that provides development monitoring and guard f
 ### 1. Install the Package
 
 ```bash
-composer require zojatech/devguard
+composer require zojatech/devguard 
+or
+composer require zojatech/devguard:dev-main 
 ```
 
 This will automatically install all required dependencies:
@@ -69,7 +71,6 @@ This creates a default development user:
 The main configuration file is published to `config/devguard.php`. Customize it according to your needs:
 
 ```php
-<?php
 
 return [
     'enabled' => true,

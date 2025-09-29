@@ -23,9 +23,24 @@ A comprehensive Laravel package that provides development monitoring and guard f
 ### 1. Install the Package
 
 ```bash
-composer require zojatech/devguard 
-or
-composer require zojatech/devguard:dev-main 
+ composer require zojatech/devguard 
+```
+## Or Use Composer 
+
+```json
+Add this to the composer.json
+
+"repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Zojatech-Team/DevGuard"
+        }
+    ]
+
+```
+
+```bash
+ composer require zojatech/devguard:dev-main 
 ```
 
 This will automatically install all required dependencies:

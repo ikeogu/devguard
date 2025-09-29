@@ -8,7 +8,7 @@
        "laravel/telescope": "^5.0",
        "opcodesio/log-viewer": "^3.0",
        "dedoc/scramble": "^0.11.32",
-       "inertiajs/inertia-laravel": "^1.0",
+       "inertiajs/inertia-laravel": "^1.0 || ^2.0",
        "tightenco/ziggy": "^2.0"
     },
     "require-dev": {

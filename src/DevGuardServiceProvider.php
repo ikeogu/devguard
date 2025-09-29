@@ -195,6 +195,7 @@ class DevGuardServiceProvider extends ServiceProvider
         $this->mergeAuthConfig();
 
         $this->registerVendorProviders();
+        $this->enforceThirdPartyConfig();
     }
 
     protected function installDevGuard()

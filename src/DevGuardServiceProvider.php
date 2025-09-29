@@ -240,7 +240,7 @@ class DevGuardServiceProvider extends ServiceProvider
             if (strpos(file_get_contents($routesFile), 'devguard.php') === false) {
                 file_put_contents(
                     $routesFile,
-                    "\n\n// DevGuard\nrequire base_path('routes/devguard.php');\n",
+                    "\n\n// DevGuard\nrequire base_path('routes/devguard_auth.php');\n",
                     FILE_APPEND
                 );
             }

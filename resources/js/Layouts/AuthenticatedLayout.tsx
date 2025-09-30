@@ -34,14 +34,15 @@ export default function Authenticated({
                                     Dashboard
                                 </NavLink>
 
-                            <a
+                           <a
                                 href={route('log-viewer.index')}
-                                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-white"
+                                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-800 dark:text-white"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 Log Viewer
                             </a>
+
                              <NavLink
                                     href={route('telescope')}
                                     active={route().current('telescope')}

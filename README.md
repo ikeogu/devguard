@@ -20,12 +20,7 @@ A comprehensive Laravel package that provides development monitoring and guard f
 
 ## Installation
 
-### 1. Install the Package
-
-```bash
- composer require zojatech/devguard 
-```
-## Or Use Composer 
+### 1. Use Composer 
 
 ```json
 Add this to the composer.json
@@ -40,7 +35,7 @@ Add this to the composer.json
 ```
 
 ```bash
- composer require zojatech/devguard:dev-main 
+  composer require zojatech/devguard:dev-main 
 ```
 
 This will automatically install all required dependencies:
@@ -79,20 +74,9 @@ This creates a default development user:
 - **Email:** `dev@local.test`
 - **Password:** `password`
 
-## Configuration
 
 ### DevGuard Configuration
 
-The main configuration file is published to `config/devguard.php`. Customize it according to your needs:
-
-```php
-
-return [
-    'enabled' => true,
-    
-    // Add your package-specific configurations here
-];
-```
 
 ### Integrated Tools Configuration
 
@@ -105,6 +89,9 @@ The package automatically publishes configuration files for all integrated tools
 Refer to each tool's documentation for specific configuration options.
 
 ## Usage
+
+### Access
+Visit YourBaseUrl/dev/login
 
 ### Development Authentication
 
@@ -132,7 +119,7 @@ You can publish specific parts of the package separately:
 ```bash
 
 # Force republish all files (overwrites existing)
-php artisan vendor:publish --tag=dev-guard-all --force
+ php artisan vendor:publish --tag=dev-guard-all --force
 ```
 
 ### Service Provider
@@ -159,21 +146,6 @@ The package automatically registers all necessary service providers and handles:
 **Permission issues:**
 - Ensure your web server has write permissions to storage and bootstrap/cache directories
 
-### Re-installation
-
-To completely reinstall the package:
-
-```bash
-# Remove published files
-rm config/devguard.php config/log-viewer.php config/scramble.php config/telescope.php
-rm database/seeders/DevUserSeeder.php
-rm -rf resources/views/vendor/dev-guard resources/js/vendor/dev-guard
-
-# Republish
-php artisan vendor:publish --tag=dev-guard-all
-php artisan migrate:fresh
-php artisan db:seed --class=DevUserSeeder
-```
 
 ### Uninstall Package
 
@@ -193,21 +165,4 @@ composer remove zojatech/devguard
 ## License
 
 This package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-## Support
-
-If you encounter any issues or have questions:
-
-1. Check the [troubleshooting section](#troubleshooting)
-2. Review the documentation for integrated tools:
-   - [Log Viewer Documentation](https://github.com/opcodesio/log-viewer)
-   - [Scramble Documentation](https://github.com/dedoc/scramble)
-   - [Telescope Documentation](https://laravel.com/docs/telescope)
-3. Open an issue on the GitHub repository
-
-## Credits
-
-This package integrates and builds upon these excellent packages:
-- [Log Viewer](https://github.com/opcodesio/log-viewer) by Opcodesio
-- [Scramble](https://github.com/dedoc/scramble) by Dedoc
-- [Laravel Telescope](https://github.com/laravel/telescope) by Laravel
+ 

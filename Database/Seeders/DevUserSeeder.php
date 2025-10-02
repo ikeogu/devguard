@@ -22,6 +22,8 @@ class DevUserSeeder extends Seeder
                 'email' => 'dev@local.test',
                 'password' => Hash::make('password'), // default password
                 'remember_token' => Str::random(10),
+                'role' => 'dev_guard',
+                'email_verified_at' => now(),
             ]);
 
             $this->command->info("Default DevUser created: dev@local.test / password");

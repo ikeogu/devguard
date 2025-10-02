@@ -234,16 +234,7 @@ class DevGuardServiceProvider extends ServiceProvider
                 '--class' => 'Database\\Seeders\\DevUserSeeder',
                 '--force' => true,
             ]);
-
-            // Append route include to web.php if missing
-            $routesFile = base_path('routes/web.php');
-            if (strpos(file_get_contents($routesFile), 'devguard.php') === false) {
-                file_put_contents(
-                    $routesFile,
-                    "\n\n// DevGuard\nrequire base_path('routes/devguard_auth.php');\n",
-                    FILE_APPEND
-                );
-            }
+    
         } catch (\Exception $e) {
             // swallow errors so composer require doesn't break
         }

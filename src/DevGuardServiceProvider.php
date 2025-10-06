@@ -92,9 +92,7 @@ class DevGuardServiceProvider extends ServiceProvider
                 database_path('migrations/' . date('Y_m_d_His') . '_create_dev_users_table.php');
 
             info('Publishing dev_users migration...');
-        } else {
-            info('Dev users migration already exists, skipping...');
-        }
+        } 
 
         // Always allow seeder to be updated
         $publishes[__DIR__ . '/../database/seeders/DevUserSeeder.php'] =

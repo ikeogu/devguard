@@ -10,7 +10,7 @@ Route::middleware(['web','redirect.if.dev_user', 'guest:dev_user', DevGuardInert
     ->prefix('dev')
     ->group(function () {
         Route::get('login', [LoginController::class, 'create'])->name('it:login');
-        Route::post('login', [LoginController::class, 'store'])->name('login');
+        Route::post('login', [LoginController::class, 'store'])->name('it:login.post');
     });
 
 // Authenticated routes (must be logged into dev_user)

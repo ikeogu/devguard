@@ -5,7 +5,6 @@
     "require": {
        "php": "^8.2",
        "laravel/framework": "^10.0|^11.0|^12.0",
-       "laravel/telescope": "^5.0",
        "opcodesio/log-viewer": "^3.0",
        "dedoc/scramble": "^0.11|^0.12",
        "inertiajs/inertia-laravel": "^1.0 || ^2.0",

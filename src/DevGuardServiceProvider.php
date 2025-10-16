@@ -146,12 +146,12 @@ class DevGuardServiceProvider extends ServiceProvider
         }
 
         // Check for Telescope
-        if (class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
+       /*  if (class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
             $telescopeConfig = base_path('vendor/laravel/telescope/config/telescope.php');
             if (file_exists($telescopeConfig)) {
                 $vendorConfigs[$telescopeConfig] = config_path('telescope.php');
             }
-        }
+        } */
 
         if (class_exists(ZiggyServiceProvider::class)) {
             $ziggyConfig = base_path('vendor/tightenco/ziggy/config/ziggy.php');
@@ -172,7 +172,7 @@ class DevGuardServiceProvider extends ServiceProvider
         $providers = [
             LogViewerLogViewerServiceProvider::class,
             \Dedoc\Scramble\ScrambleServiceProvider::class,
-            \Laravel\Telescope\TelescopeServiceProvider::class,
+           // \Laravel\Telescope\TelescopeServiceProvider::class,
         ];
 
         foreach ($providers as $provider) {
@@ -278,7 +278,7 @@ class DevGuardServiceProvider extends ServiceProvider
         }
 
         // Enforce Telescope config
-        if (class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
+       /*  if (class_exists(\Laravel\Telescope\TelescopeServiceProvider::class)) {
             $telescopeConfig = $config->get('telescope', []);
             $telescopeConfig['path'] = env('TELESCOPE_PATH', 'telescope');
             $telescopeConfig['middleware'] = array_unique(array_merge(
@@ -286,7 +286,7 @@ class DevGuardServiceProvider extends ServiceProvider
                 ['web', 'auth:dev_user']
             ));
             $config->set('telescope', $telescopeConfig);
-        }
+        } */
 
         // Enforce Scramble config
         if (class_exists(\Dedoc\Scramble\ScrambleServiceProvider::class)) {

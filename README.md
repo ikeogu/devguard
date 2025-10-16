@@ -118,7 +118,6 @@ You can publish specific parts of the package separately:
 
 ```bash
 
-# Force republish all files (overwrites existing)
  php artisan vendor:publish --tag=dev-guard-all --force
 ```
 

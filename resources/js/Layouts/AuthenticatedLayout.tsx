@@ -43,12 +43,12 @@ export default function Authenticated({
                                 Log Viewer
                             </a>
 
-                             <NavLink
+                            {/*  <NavLink
                                     href={route('telescope')}
                                     active={route().current('telescope')}
                                 >
                                     Telescope
-                                </NavLink>
+                                </NavLink> */}
 
                                 <NavLink
                                     href={route('scramble.docs.ui')}
